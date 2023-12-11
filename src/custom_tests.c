@@ -100,37 +100,151 @@ bool test_is_vowel() {
 
 bool test_is_tail() {
   // TODO: Implement this function.
-  return true;
+
+  char testcase_1 = 'w';
+  bool output_1 = is_tail(testcase_1);
+  if(assert_true("w", output_1)) {
+    return true;
+  }
+
+  char testcase_2 = 's';
+  bool output_2 = is_tail(testcase_2);
+  if(assert_true("s", output_2)) {
+    return true;
+  }
+
+  char testcase_3 = 'a';
+  bool output_3 = is_tail(testcase_3);
+  if(assert_true("a", output_3)) {
+    return true;
+  }
+
+  char testcase_4 = 'd';
+  bool output_4 = is_tail(testcase_4);
+  if(assert_true("d", output_4)) {
+    return true;
+  }
+
+  return false;
 }
 
 bool test_is_head() {
   // TODO: Implement this function.
-  return true;
+  char testcase_1 = 'W';
+  bool output_1 = is_head(testcase_1);
+  if(assert_true("W", output_1)) {
+    return true;
+  }
+
+  char testcase_2 = 'S';
+  bool output_2 = is_head(testcase_2);
+  if(assert_true("S", output_2)) {
+    return true;
+  }
+
+  char testcase_3 = 'A';
+  bool output_3 = is_head(testcase_3);
+  if(assert_true("A", output_3)) {
+    return true;
+  }
+
+  char testcase_4 = 'D';
+  bool output_4 = is_head(testcase_4);
+  if(assert_true("D", output_4)) {
+    return true;
+  }
+  char testcase_5 = 'x';
+  bool output_5 = is_head(testcase_5);
+  if(assert_true("x", output_5)) {
+    return true;
+  }
+
+  char testcase_6 = 'y';
+  bool output_6 = is_head(testcase_6);
+  if(assert_false("y", output_6)) {
+    return true;
+  }
+
+  return false;
 }
 
 bool test_is_snake() {
   // TODO: Implement this function.
-  return true;
+  char testcases[13]= "wasd^<v>WASDx";
+  for(int i = 0; i < 13; i++) {
+    bool output = is_snake(testcases[i]);
+    char testcases_str[2] = {testcases[i], '\0'};
+    if(assert_true(testcases_str, output)) {
+      return true;
+    }
+  }
+  return false;
 }
 
 bool test_body_to_tail() {
   // TODO: Implement this function.
-  return true;
+  char testcases[4] = "^v<>";
+  for(int i = 0; i < 4; i++) {
+    bool output = body_to_tail(testcases[i]);
+    char testcases_str[2] = {testcases[i], '\0'};
+    if(assert_true(testcases_str, output)) {
+      return true;
+    }
+  }
+  return false;
 }
 
 bool test_head_to_body() {
   // TODO: Implement this function.
-  return true;
+  char testcases[4] = "WSAD";
+  for(int i = 0; i < 4; i++) {
+    bool output = head_to_body(testcases[i]);
+    char testcases_str[2] = {testcases[i], '\0'};
+    if(assert_true(testcases_str, output)) {
+      return true;
+    }
+  }
+  return false;
 }
 
 bool test_get_next_row() {
   // TODO: Implement this function.
-  return true;
+  char testcases_1[3] = "^wW";
+  for(int i = 0; i < 3; i++) {
+    bool output = (get_next_row(2, testcases_1[i]) == 1 ? true : false);
+    if(assert_true("^wW should go up", output)) {
+      return true;
+    }
+  }
+
+  char tesecases_2[3] = "vsS";
+  for(int i = 0; i < 3; i++) {
+    bool output = (get_next_row(2, tesecases_2[i]) == 3 ? true : false);
+    if(assert_true("vsS should go down", output)) {
+      return true;
+    }
+  }
+  return false;
 }
 
 bool test_get_next_col() {
   // TODO: Implement this function.
-  return true;
+  char testcases_1[3] = "<aA";
+  for(int i = 0; i < 3; i++) {
+    bool output = (get_next_col(2, testcases_1[i]) == 1 ? true : false);
+    if(assert_true("<aA should go left", output)) {
+      return true;
+    }
+  }
+
+  char tesecases_2[3] = ">dD";
+  for(int i = 0; i < 3; i++) {
+    bool output = (get_next_col(2, tesecases_2[i]) == 2 ? true : false);
+    if(assert_true(">dD should go right", output)) {
+      return true;
+    }
+  }
+  return false;
 }
 
 bool test_customs() {
