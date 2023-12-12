@@ -318,25 +318,25 @@ void update_state(game_state_t* state, int (*add_food)(game_state_t* state)) {
   char new_square;
   for (unsigned int i = 0; i < state->num_snakes; i++) {
 
-    // get the positon of the snake's head and tail
+    // get the positon of the snake's head
     unsigned int head_row = state->snakes[i].head_row;
     unsigned int head_col = state->snakes[i].head_col;
 
     // get the square the snake is moving to
     new_square = next_square(state, i);
-
-    if (new_square == '*') {
-      update_head(state, i);
-      add_food(state);
-    }
-    else if (new_square == '#' || is_snake(new_square)) {
-      set_board_at(state, head_row, head_col,'x');
-      state->snakes[i].live = false;
-      return;
-    }
-    else {
-      update_head(state, i);
-      update_tail(state, i);
+    if (state->snakes[i].live) {
+      if (new_square == '*') {
+        update_head(state, i);
+        add_food(state);
+      }
+      else if (new_square == '#' || is_snake(new_square)) {
+        set_board_at(state, head_row, head_col,'x');
+        state->snakes[i].live = false;
+      }
+      else {
+        update_head(state, i);
+        update_tail(state, i);
+      }
     }
   }
   return;
@@ -361,9 +361,9 @@ game_state_t* load_board(FILE* fp) {
   int count = 0;
 
   // allocate memory for line
-  char* line = malloc(sizeof(char) * 50);
+  char* line = malloc(sizeof(char) * 100005);
   while(1) {
-    char* line_ptr = fgets(line, 50, fp);
+    char* line_ptr = fgets(line, 100005, fp);
     if (line_ptr == NULL) {
       break;
     }
